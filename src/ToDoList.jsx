@@ -1,4 +1,4 @@
-import React, { use, useState } from "react"
+import React, { useState } from "react"
 
 function ToDoList() {
 
@@ -10,7 +10,7 @@ function ToDoList() {
 
 
     function handleInputChange(event) {
-        setNewTask(t => event.target.value);
+        setNewTask(event.target.value);
     }
 
     function addTask() {
@@ -24,10 +24,10 @@ function ToDoList() {
         const updatedTasks = tasks.filter((_, i) => i !== index);
         setTasks(updatedTasks);
 
-        // Remove the deleted task's index and shift remaining indexes
+        
         const updatedCompletedTasks = completedTasks
-            .filter(i => i !== index) // Remove the deleted index
-            .map(i => (i > index ? i - 1 : i)); // Shift remaining indexes down
+            .filter(i => i !== index) 
+            .map(i => (i > index ? i - 1 : i)); 
 
         setCompletedTasks(updatedCompletedTasks);
     }
@@ -38,7 +38,7 @@ function ToDoList() {
             [updatedTasks[index], updatedTasks[index - 1]] = [updatedTasks[index - 1], updatedTasks[index]];
             setTasks(updatedTasks);
 
-            // Update completed tasks
+            
             const updatedCompletedTasks = [...completedTasks];
             const indexInCompleted = updatedCompletedTasks.indexOf(index);
             const indexAboveInCompleted = updatedCompletedTasks.indexOf(index - 1);
@@ -60,7 +60,7 @@ function ToDoList() {
             [updatedTasks[index], updatedTasks[index + 1]] = [updatedTasks[index + 1], updatedTasks[index]];
             setTasks(updatedTasks);
 
-            // Update completed tasks
+            
             const updatedCompletedTasks = [...completedTasks];
             const indexInCompleted = updatedCompletedTasks.indexOf(index);
             const indexBelowInCompleted = updatedCompletedTasks.indexOf(index + 1);
@@ -79,7 +79,7 @@ function ToDoList() {
     function startEditTask(index) {
         setEditIndex(index);
         setEditedTask(tasks[index]);
-    }
+    }                                                 
 
     function saveEditedTask() {
         if (editedTask.trim() !== "") {
@@ -91,11 +91,11 @@ function ToDoList() {
     }
 
     function toggleCompleteTask(index) {
-        if (completedTasks.includes(index)) {
-            // If already completed, remove it from the completedTasks array
-            setCompletedTasks(completedTasks.filter(i => i !== index));
+        if (completedTasks.includes(index)) {                             
+           
+            setCompletedTasks(completedTasks.filter(i => i !== index));                             
         } else {
-            // Otherwise, mark it as complete
+                                                                                                    
             setCompletedTasks([...completedTasks, index]);
         }
     }

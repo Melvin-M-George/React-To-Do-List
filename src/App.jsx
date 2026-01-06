@@ -1,21 +1,27 @@
 import { useState } from "react"
 
 
-function App(){
+function App() {
 
-    const [todos,setTodos] = useState([]);
-    const [input,setInput] = useState("");
+    const [todos, setTodos] = useState([]);
+    const [input, setInput] = useState("");
 
-    const addTodo = ()=>{
-        if(input.trim() === "") return;
-        setTodos([...todos,{id:Date.now(),text:input,completed:false}])
+    const addTodo = () => {
+        if (input.trim() === "") return;
+        setTodos([...todos, { id: Date.now(), text: input, completed: false }])
         setInput("");
     }
 
-    return(<>
+    return (<>
         <h1>Todo App</h1>
-        <input type="text" placeholder="Enter todo" value={input} onChange={(e)=>setInput(e.target.value)}/>
+        <input type="text" placeholder="Enter todo" value={input} onChange={(e) => setInput(e.target.value)} />
         <button onClick={addTodo}>Add todo</button>
+
+        <ul>
+            {todos.map((todo) => (<li key={todo.id}>
+                {todo.text}
+            </li>))}
+        </ul>
     </>)
 }
 
